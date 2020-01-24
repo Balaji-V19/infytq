@@ -2,18 +2,25 @@
 ls=[]
 def find_ten_substring(num_str):
     le=len(num_str)
-    va='0'
+    va=''
     for i in range(le):
-        if(int(va)+int(num_str[i])<=10):
-            va=va+num_str[i]
+        l=len(va)
+        res=0
+        for k in range(l):
+            res+=int(va[k])
+        if(res+int(num_str[i])<10):
+            if(res==0):
+                va=num_str[i]
+            else:
+                va=str(res)+num_str[i]
         else:
             ls.append(va+num_str[i])
             if(le>0):
                 return find_ten_substring(num_str[1:len(num_str)])
             else:
                 break
-       
-    print(ls)
+    return ls
+    
     #Remove pass and write your logic here
 
 num_str="2825302"
